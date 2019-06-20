@@ -2,20 +2,24 @@
 ビジネスロジックモジュール
 """
 from matplotlib import pyplot as plt
+import seaborn as sns
 from pandas.plotting import scatter_matrix
 import pandas as pd
 import time
 import io
  
  
-def create_scatter(data):
+def create_plt(data, plottype):
     
     data = data.replace(',', '\t').replace(' ', '\t')
     df = pd.read_csv(io.StringIO(data), sep='\t')
  
     # プロットマーカーの大きさ、色、透明度を変更
-    scatter_matrix(df, diagonal='kde', color='#AAAAFF', edgecolors='#0000FF', alpha=0.5)
- 
+    print(plottype) 
+    if plottype == 'scatter_matrix':
+        scatter_matrix(df, diagonal='kde', color='#AAAAFF', edgecolors='#0000FF', alpha=0.5)
+    else:
+        plt.violinplot(df)
     # ファイル名
     filename = time.strftime('%Y%m%d%H%M%S') + ".png"
  

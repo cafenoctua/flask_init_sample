@@ -55,8 +55,9 @@ def analysis():
     """ 分析実行処理 """
  
     title = request.form['title']
+    plottype = request.form.get('plottype')
     data = request.form['data']
-    img = models.create_scatter(data)
+    img = models.create_plt(data, plottype)
  
     con = get_db()
  
